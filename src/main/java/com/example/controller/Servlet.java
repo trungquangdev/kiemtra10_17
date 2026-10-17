@@ -40,7 +40,7 @@ public class Servlet extends HttpServlet {
 
     private void show(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("show", phieuGiamGiaService.getAll());
-//        req.setAttribute("showL", loaiPhieuGiamGiaService.getAll());
+        req.setAttribute("showL", loaiPhieuGiamGiaService.getAll());
         req.getRequestDispatcher("/show.jsp").forward(req,resp);
     }
 
