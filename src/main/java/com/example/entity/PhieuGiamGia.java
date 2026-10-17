@@ -15,14 +15,18 @@ public class PhieuGiamGia {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "loai_phieu_id")
     //truyền khóa ngoại
     private LoaiPhieuGiamGia loaiPhieuGiamGia;
+
     @Column
     private String ma;
+
     @Column
     private String ten;
+
     @Column(name = "so_luong")
     private Integer soLuong;
 

@@ -23,7 +23,7 @@ public class Servlet extends HttpServlet {
     public PhieuGiamGiaService phieuGiamGiaService = new PhieuGiamGiaService();
     public LoaiPhieuGiamGiaService loaiPhieuGiamGiaService = new LoaiPhieuGiamGiaService();
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, IOException, ServletException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String uri = req.getRequestURI();
         if(uri.contains("/phieu-giam-gia/hien-thi")){
             this.show(req,resp);
@@ -53,28 +53,24 @@ public class Servlet extends HttpServlet {
         }
     }
 
-    private void add(HttpServletRequest req, HttpServletResponse resp) throws InvocationTargetException, IllegalAccessException, IOException {
-        PhieuGiamGia cl = new PhieuGiamGia();
-        BeanUtils.populate(cl, req.getParameterMap());
-        phieuGiamGiaService.add(cl);
-        resp.sendRedirect("/phieu-giam-gia/hien-thi");
+    private void add(HttpServletRequest req, HttpServletResponse resp) throws  IOException, ServletException {
+        try{
+            PhieuGiamGia cl = new PhieuGiamGia();
 
-        PhieuGiamGia cl = new PhieuGiamGia();
-                BeanUtils.populate(cl, req.getParameterMap());
-                // 2. Lấy idNxb mà người dùng đã chọn từ combobox
-                String idNxbStr = req.getParameter("idNxb");
+            // Lấy dữ liệu từ form và gán vào các thuộc tính cùng tên
+            BeanUtils.populate(cl, req.getParameterMap());
 
-                if (idNxbStr != null && !idNxbStr.isEmpty()) {
-                    Integer idNxb = Integer.parseInt(idNxbStr);
+            // Gọi Service để thêm phiếu vào database
+            phieuGiamGiaService.add(cl);
 
-                    // 3. Tìm đối tượng Nxb đầy đủ trong CSDL bằng id
-                    LoaiPhieuGiamGia nxb = loaiPhieuGiamGiaService.getOne(idNxb);
+            // Thêm xong thì quay lại trang hiển thị
+            resp.sendRedirect("/phieu-giam-gia/hien-thi");
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            throw new ServletException("Lỗi khi lấy dữ liệu từ form", e);
+        }
 
-                    // 4. Gán đối tượng Nxb này vào cho Sách
-                    cl.setNxb(nxb);
-                }
-                sachservice.add(cl);
-                resp.sendRedirect("/show");
+
+
     }
 
 }
