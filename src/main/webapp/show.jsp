@@ -29,7 +29,7 @@
 
     <select name="maLoaiPhieu">
         <c:forEach items="${showL}" var="sl">
-            <option value="id">${sl.ma}</option>
+            <option value="${sl.id}">${sl.ma}</option>
         </c:forEach>
     </select>
 
