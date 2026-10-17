@@ -12,4 +12,7 @@ public class LoaiPhieuGiamGiaService {
     public List<LoaiPhieuGiamGia> getAll(){
         return loaiPhieuGiamGiaRepo.getAll();
     }
+    public LoaiPhieuGiamGia getOne(Integer id){
+        return loaiPhieuGiamGiaRepo.getOne(id);
+    }
 }

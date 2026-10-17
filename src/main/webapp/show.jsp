@@ -9,15 +9,23 @@
 
 <form action="/phieu-giam-gia/add" method="post">
 
-<%--    <select name="loaiSanPham"> //name tự đặt--%>
+<%--    <select name="loaiPhieuGiamGia"> //name tự đặt--%>
 <%--        <c:forEach items="${showlsp}" var="i">--%>
 <%--            <option value="${i.id}">${i.ma}</option>--%>
 <%--            //id của entity gôc--%>
 <%--        </c:forEach>--%>
 <%--    </select>--%>
+
 <%--    viet trong table hienthi--%>
-<%--    <td>${s.loaiSanPham.ma}</td>--%>
-<%--    loaiSanPham cái này là tên thuộc tính được khai báo trong Class có ManyToOne gốc--%>
+<%--    Trong entity PhieuGiamGia.java :--%>
+<%--    @ManyToOne--%>
+<%--    @JoinColumn(name = "loai_phieu_id")--%>
+<%--    private LoaiPhieuGiamGia loaiPhieuGiamGia;--%>
+
+<%--    =>JSP phải gọi theo tên thuộc tính Java loaiPhieuGiamGia--%>
+<%--    <td>${s.loaiPhieuGiamGia.ma}</td>--%>
+
+
 
     <select name="maLoaiPhieu">
         <c:forEach items="${showL}" var="sl">
@@ -50,7 +58,7 @@
     <tbody>
         <c:forEach items="${show}" var="s">
             <tr>
-                <td>${s.loai_phieu_giam_gia.ma}</td>
+                <td>${s.loaiPhieuGiamGia.ma}</td>
                 <td>${s.ma}</td>
                 <td>${s.ten}</td>
                 <td>${s.soLuong}</td>

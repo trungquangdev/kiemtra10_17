@@ -13,6 +13,11 @@ public class PhieuGiamGiaRepo {
             return session.createQuery("from PhieuGiamGia ",PhieuGiamGia.class).list();
         }
     }
+    public PhieuGiamGia getOne(Integer id){
+        try(Session session = Hibernate.getFactory().openSession()){
+            return session.find(PhieuGiamGia.class,id);
+        }
+    }
 
     public void add(PhieuGiamGia phieuGiamGia) {
         try (Session session = Hibernate.getFactory().openSession()) {

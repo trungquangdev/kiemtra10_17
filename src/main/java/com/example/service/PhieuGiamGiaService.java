@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.LoaiPhieuGiamGia;
 import com.example.entity.PhieuGiamGia;
 import com.example.repository.PhieuGiamGiaRepo;
 
@@ -12,6 +13,9 @@ public class PhieuGiamGiaService {
 
         return phieuGiamGiaRepo.getAll();
     }
+public PhieuGiamGia getOne(Integer id){
+        return phieuGiamGiaRepo.getOne(id);
+}
 
     public void delete(Integer id){
         phieuGiamGiaRepo.delete(id);

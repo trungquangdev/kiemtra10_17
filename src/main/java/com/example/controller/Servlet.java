@@ -56,9 +56,14 @@ public class Servlet extends HttpServlet {
     private void add(HttpServletRequest req, HttpServletResponse resp) throws  IOException, ServletException {
         try{
             PhieuGiamGia cl = new PhieuGiamGia();
-
-            // Lấy dữ liệu từ form và gán vào các thuộc tính cùng tên
             BeanUtils.populate(cl, req.getParameterMap());
+
+            String maLoaiPhieu = req.getParameter("loaiPhieuId");
+
+            Integer loaiPhieuId= Integer.valueOf(req.getParameter("id"));
+
+            LoaiPhieuGiamGia loaiPhieuGiamGia=loaiPhieuGiamGiaService.getOne(loaiPhieuId);
+            cl.setLoaiPhieuGiamGia(loaiPhieuGiamGia);
 
             // Gọi Service để thêm phiếu vào database
             phieuGiamGiaService.add(cl);
@@ -70,7 +75,16 @@ public class Servlet extends HttpServlet {
         }
 
 
-
+//                      String idNxbStr = req.getParameter("idNxb");
+//                      Integer idNxb = Integer.parseInt(idNxbStr);
+//
+//                    // 3. Tìm đối tượng Nxb đầy đủ trong CSDL bằng id
+//                    Nxb nxb = nxbService.getOne(idNxb);
+//                    // 4. Gán đối tượng Nxb này vào cho Sách
+//                    cl.setNxb(nxb);
+//
+//                sachservice.add(cl);
+//                resp.sendRedirect("/show");
     }
 
 }

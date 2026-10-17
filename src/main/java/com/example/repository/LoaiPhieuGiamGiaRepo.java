@@ -13,4 +13,10 @@ public class LoaiPhieuGiamGiaRepo {
             return session.createQuery("from LoaiPhieuGiamGia ",LoaiPhieuGiamGia.class).list();
         }
     }
+
+    public LoaiPhieuGiamGia getOne(Integer id){
+        try(Session session=Hibernate.getFactory().openSession()){
+            return session.find(LoaiPhieuGiamGia.class,id);
+        }
+    }
 }
